@@ -76,10 +76,10 @@ var (
 		LondonBlock:           big.NewInt(12_965_000),
 		ArrowGlacierBlock:     big.NewInt(13_773_000),
 		GrayGlacierBlock:      big.NewInt(15_050_000),
-		EthPoWStartDifficulty: big.NewInt(1_099_511_627_776),
+		EthPoWStartDifficulty: big.NewInt(1_000_000),
 		EthPoWTotalDifficulty: MainnetTerminalTotalDifficulty,
-		EthPoWForkBlock:       big.NewInt(16_000_000),
-		EthPoWForkSupport:     true,
+		EthPoWForkBlock:       nil,
+		EthPoWForkSupport:     false,
 		Ethash:                new(EthashConfig),
 	}
 
