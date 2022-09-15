@@ -111,6 +111,11 @@ var (
 		Usage:    "Enable monitoring and management of USB hardware wallets",
 		Category: flags.AccountCategory,
 	}
+	RangeLimitFlag = &cli.BoolFlag{
+		Name:     "rangelimit",
+		Usage:    "Enable 5000 blocks limit for range query",
+		Category: flags.APICategory,
+	}
 	SmartCardDaemonPathFlag = &cli.StringFlag{
 		Name:     "pcscdpath",
 		Usage:    "Path to the smartcard daemon (pcscd) socket file",
@@ -1489,6 +1494,9 @@ func SetNodeConfig(ctx *cli.Context, cfg *node.Config) {
 	if ctx.IsSet(InsecureUnlockAllowedFlag.Name) {
 		cfg.InsecureUnlockAllowed = ctx.Bool(InsecureUnlockAllowedFlag.Name)
 	}
+	if ctx.IsSet(RangeLimitFlag.Name) {
+		cfg.RangeLimit = ctx.Bool(RangeLimitFlag.Name)
+	}
 }
 
 func setSmartCard(ctx *cli.Context, cfg *node.Config) {
@@ -1835,6 +1843,10 @@ func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *ethconfig.Config) {
 	if ctx.IsSet(VMEnableDebugFlag.Name) {
 		// TODO(fjl): force-enable this in --dev mode
 		cfg.EnablePreimageRecording = ctx.Bool(VMEnableDebugFlag.Name)
+	}
+
+	if ctx.IsSet(RangeLimitFlag.Name) {
+		cfg.RangeLimit = ctx.Bool(RangeLimitFlag.Name)
 	}
 
 	if ctx.IsSet(RPCGlobalGasCapFlag.Name) {

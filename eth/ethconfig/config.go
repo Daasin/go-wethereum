@@ -217,6 +217,8 @@ type Config struct {
 
 	//is networkid set
 	IsNetworkIdSet bool
+
+	RangeLimit bool
 }
 
 // CreateConsensusEngine creates a consensus engine for the given chain configuration.
